@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/api/session', async (req, res) => {
   const sessionToken = req.headers['session-token'];  // 从请求头中获取 session-token
-  const url = "https://chatgpt.com/api/auth/session";
+  const url = "https://chat.openai.com/api/auth/session";
   const headers = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
     "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -20,7 +20,7 @@ app.get('/api/session', async (req, res) => {
     "sec-fetch-site": "none",
     "sec-fetch-user": "?1",
     "upgrade-insecure-requests": "1",
-    "cookie": `oai-dm-tgt-c-240329=2024-04-02; __Secure-next-auth.session-token=${sessionToken}`
+    "cookie": `__Secure-next-auth.session-token=${sessionToken}`
   };
 
   try {
