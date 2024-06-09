@@ -5,7 +5,6 @@ const fetch = (...args) =>
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 使用 express.json() 中间件来解析 JSON 请求体
 app.use(express.json());
 
 app.post("/api/session", async (req, res) => {
