@@ -5,8 +5,11 @@ const fetch = (...args) =>
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// 使用 express.json() 中间件来解析 JSON 请求体
+app.use(express.json());
+
 app.post("/api/session", async (req, res) => {
-  const sessionToken = req.headers["session-token"]; // 从请求头中获取 session-token
+  const sessionToken = req.body["session-token"]; // 从请求体中获取 session-token
 
   const url = "https://chatgpt.com/api/auth/session";
   const headers = {
@@ -41,7 +44,7 @@ app.post("/api/session", async (req, res) => {
 
     const data = await response.text();
     const responseSessionToken = response.headers.get(
-      "__Secure-next-auth.session-token",
+      "__Secure-next-auth.session-token"
     );
 
     res.json({ data: data, sessionToken: responseSessionToken });
